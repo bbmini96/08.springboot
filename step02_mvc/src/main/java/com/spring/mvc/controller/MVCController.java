@@ -2,8 +2,13 @@ package com.spring.mvc.controller;
 
 import java.util.Map;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.mvc.model.Developer;
 
@@ -105,14 +112,79 @@ public class MVCController {
 		
 	}
 	
-	
-	// http://localhost:8080/test9	 => test.jsp로 이동
-	@GetMapping(value = "/test9")	
+	// http://localhost:8080/test9	 => test.jsp로 이동	
+	@GetMapping(value = "/test9")		// String타입 리턴
 	public String test9() { 		
 		System.out.println("MVCController: test9()");
 		
 		return "test";
 	}
+	
+	// http://localhost:8080/test10
+	@GetMapping("/test10")	// => return 없이 test10.jsp로 이동 void타입 리턴
+	public void test10() {
+		System.out.println("MVCController: test10()");
+	}
+	
+	// http://localhost:8080/test10?id=dev&no=1001
+	@ResponseBody	// DTO타입 리턴
+	@GetMapping("/test11")		// responsebody	
+	public Developer test11(@ModelAttribute Developer dev) {
+		System.out.println(dev);
+		return dev;
+	}
+	
+	@GetMapping("/test12")		// HttpHeaders
+	public HttpHeaders test12() {
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "application/json");
+		return headers;
+	}
+	
+	@GetMapping("/test13")	// ResponseEntity
+	public ResponseEntity<Developer> test13(Developer dev){		// <바디에 담는 데이터>
+//		// Body 
+//		String data = "test13";		
+//		
+//		// Header
+		HttpHeaders headers = new HttpHeaders();
+//		headers.add("Content-Encoding", "UTF-8");
+		
+		Developer data = new Developer("dev", 1001);
+		headers.add("Content-type", "application/json; charset=UTF-8");
+		
+		// Status
+//		HttpStatus.OK
+		
+		ResponseEntity<Developer> response = new ResponseEntity<Developer>(data, headers, HttpStatusCode.valueOf(200));
+		
+		return response;
+		
+	}
+	
+	@GetMapping("/test14")	// Model
+	public String test14(@ModelAttribute Developer dev, Model model) {
+		System.out.println(dev);
+		model.addAttribute("dev", dev);
+		
+		return "test14";
+	}
+	
+	@GetMapping("/test15")		//	ModelAndView
+	public ModelAndView test15(@ModelAttribute Developer dev, ModelAndView mv) {
+		System.out.println(dev);
+		
+		mv.addObject("dev",dev);
+		mv.setViewName("test14");
+		
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 }
