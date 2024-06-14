@@ -47,11 +47,54 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.querydsl/querydsl-apt -->
 		<dependency>
-			<groupId>com.spring</groupId>
-			<artifactId>step03_persistence</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+		    <groupId>com.querydsl</groupId>
+		    <artifactId>querydsl-apt</artifactId>
+		    <version>5.1.0</version>
+		    <classifier>jakarta</classifier>
+		    <scope>provided</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.querydsl/querydsl-jpa -->
+		<dependency>
+		    <groupId>com.querydsl</groupId>
+		    <artifactId>querydsl-jpa</artifactId>
+		    <version>5.1.0</version>
+		    <classifier>jakarta</classifier>
+		    <scope>provided</scope>
+		</dependency>
+		
+		
+		
+		
+		<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
+		<dependency>
+		   <groupId>jakarta.servlet</groupId>
+		   <artifactId>jakarta.servlet-api</artifactId>
+		   <version>6.0.0</version>
+		   <scope>provided</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api -->
+		<dependency>
+		   <groupId>jakarta.servlet.jsp.jstl</groupId>
+		   <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+		   <version>3.0.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl -->
+		<dependency>
+		   <groupId>org.glassfish.web</groupId>
+		   <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+		   <version>3.0.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper -->
+		<dependency>
+		   <groupId>org.apache.tomcat.embed</groupId>
+		   <artifactId>tomcat-embed-jasper</artifactId>
+		   <version>10.1.24</version>
+		</dependency>
+
+		
 	</dependencies>
 
 	<build>

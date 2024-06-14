@@ -13,6 +13,7 @@ import com.spring.app.notice.dto.NoticeDTO;
 import com.spring.app.notice.entity.Notice;
 import com.spring.app.notice.service.NoticeService;
 
+import jakarta.persistence.Entity;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -21,7 +22,14 @@ import lombok.RequiredArgsConstructor;
 public class NoticeController {
 	
 	private final NoticeService noticeService;
-
+	
+	@GetMapping("/api/query-notice")
+	public PageResponseDTO<NoticeDTO,Notice> getNoticeByContent(PageRequestDTO pageRequest){
+		System.out.println(pageRequest);
+		return noticeService.getNoticeByContent(pageRequest);
+	}
+	
+	
 //	@CrossOrigin(origins = "http://localhost:3004")
 	@PostMapping("/notice")
 	public void insertNotice() {
